@@ -1,3 +1,5 @@
+<div *ngIf="selected"> <app-pacientes-detail [pacientesDetail]="selectedPaciente"></app-pacientes-detail>
+</div>
 <div class="container-fluid">
   <div class="col-6">
     <table class="table">
@@ -10,7 +12,7 @@
       <tbody>
         <tr *ngFor="let p of pacientes">
           <td>
-            <dd>{{p.nombre}}</dd>
+            <dd (click)="onSelected(p)">{{p.nombre}}</dd>
           </td>
           <td>
             <dd>{{p.edad}}</dd>
