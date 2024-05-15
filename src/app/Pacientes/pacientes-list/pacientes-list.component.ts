@@ -10,6 +10,7 @@ import { PacienteService } from '../paciente.service';
 export class PacientesListComponent implements OnInit {
 
   pacientes: Array<Paciente> = [];
+  conteo: number = 0;
   selectedPaciente !: Paciente;
   selected: Boolean = false;
 
@@ -20,6 +21,12 @@ export class PacientesListComponent implements OnInit {
   getPacientes(): void {
     this.pacienteService.getPacientes().subscribe((paciente) => {
       this.pacientes = paciente;
+
+      for (let i = 0; i < this.pacientes.length; i++) {
+        if (this.pacientes[i].edad < 18) {
+          this.conteo +=1;
+        }
+      }
     });
   }
 
@@ -29,6 +36,7 @@ export class PacientesListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getPacientes();
   }
 
 }
